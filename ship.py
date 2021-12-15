@@ -38,3 +38,24 @@ def checking_bullseye(field_enemy: list, field_shots: set, shot: tuple):
     else:
         print("You didn't hit the target. Better luck next time")
     return field_enemy, field_shots
+def make_move():
+    move = input().split()
+    return tuple(map(int, move))
+
+
+def step():
+    i = 0
+    field_1 = get_field()
+    field_2 = get_field()
+    shots1 = set()
+    shots2 = set()
+    while True:
+        if not i % 2:
+            move = make_move # player1
+            field2, shots1 = checking_bullseye(field_enemy, field_shots, move)
+        else:
+            move = make_move # player2
+            field1, shots2 = checking_bullseye(field_enemy, field_shots, move)
+        i += 1
+        if field2 == None or field1 == None:
+            break
