@@ -18,7 +18,6 @@ def print_field(field_player1: list, field_shoots: set):
             print(poss, end=' ')
         print()
 
-
 def checking_bullseye(field_enemy: list, field_shots: set, shot: tuple):
     horiz = shot[0]
     vert = shot[1]
