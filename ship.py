@@ -9,7 +9,6 @@ def print_field(field_player1: list, field_shoots: set):
         print()
 
     lst = [["_"]*10 for i in range(10)]
-    lst[2][1] = 'O'
     print('Shoots field:')
     for move in field_shoots: 
         lst[move[1]][move[0]] = '*'
