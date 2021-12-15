@@ -1,7 +1,7 @@
 def get_field():
     pass
 
-def print_field():
+def print_field(field_player1: list, field_shoots: set):
     print('My field:')
     for line in field_player1:
         for poss in line:
