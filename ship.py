@@ -69,11 +69,13 @@ def step():
     shots2 = set()
     while True:
         if not i % 2:
+            print_field(field_1, shots1)
             move = make_move # player1
-            field2, shots1 = checking_bullseye(field_enemy, field_shots, move)
+            field_2, shots1 = checking_bullseye(field_2, shots1, move)
         else:
+            print_field(field_2, shots2)
             move = make_move # player2
-            field1, shots2 = checking_bullseye(field_enemy, field_shots, move)
+            field1, shots2 = checking_bullseye(field_1, shots2, move)
         i += 1
-        if field2 == None or field1 == None:
+        if field_2 == None or field_1 == None:
             break
