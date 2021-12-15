@@ -15,7 +15,7 @@ def get_field():
             elif pos == "quit":
                 return pos
     def current_list(field):
-        number_of_boates = 0
+        number_of_boates = -1
         print('\t')
         column = 0
         print(end='  ')
@@ -55,6 +55,8 @@ def get_field():
     result = current_list(create_field())
     return result
 
+
+
 def checker(coords: tuple):
     if coords[0] not in range(10) or coords[1] not in range(10):
         print("You have not entered the allowed coordinates. Try again")
@@ -69,7 +71,7 @@ def print_field(field_player1: list, field_shoots: set):
         print()
 
     lst = [["_"]*10 for i in range(10)]
-    print('Shoots field:')
+    print('Shots field:')
     for move in field_shoots: 
         lst[move[1]][move[0]] = '*'
     
@@ -87,6 +89,7 @@ def near_ships(field: list, shot: tuple):
     
 
 def checking_bullseye(field_enemy: list, field_shots: set, shot: tuple):
+    print(shot)
     horiz = shot[0]
     vert = shot[1]
     mark = field_enemy[vert][horiz]
@@ -96,6 +99,7 @@ def checking_bullseye(field_enemy: list, field_shots: set, shot: tuple):
         print("You have shot the same square! Not nice")
     if mark == "O" or mark == "X":
         field_enemy[vert][horiz] = "_"
+        print("You got it!")
         if near_ships(field_enemy, shot):
             print("There are other ships on these lines")
         else:
@@ -127,12 +131,14 @@ def step():
     while True:
         if not i % 2:
             print_field(field_1, shots1)
-            move = make_move # player1
+            move = make_move() # player1
             field_2, shots1 = checking_bullseye(field_2, shots1, move)
         else:
             print_field(field_2, shots2)
-            move = make_move # player2
+            move = make_move() # player2
             field1, shots2 = checking_bullseye(field_1, shots2, move)
         i += 1
         if field_2 == None or field_1 == None:
             break
+
+step()
