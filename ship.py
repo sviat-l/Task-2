@@ -91,6 +91,7 @@ def checking_bullseye(field_enemy: list, field_shots: set, shot: tuple):
     if len(field_shots) == copy_shots:
         print("You have shot the same square! Not nice")
     if mark == "O":
+        hit = True
         field_enemy[vert][horiz] = "X"
         print("You got it!")
         if near_ships(field_enemy, shot):
@@ -106,8 +107,9 @@ def checking_bullseye(field_enemy: list, field_shots: set, shot: tuple):
             print("WIN!")
             return None, None
     else:
+        hit = False
         print("You didn't hit the target. Better luck next time")
-    return field_enemy, field_shots
+    return field_enemy, field_shots, hit
 
 
 def make_move():
@@ -122,15 +124,16 @@ def step():
     shots1 = set()
     shots2 = set()
     while True:
+        to_cont = False
         if not i % 2:
             print_field(field_1, shots1)
             move = make_move() # player1
-            field_2, shots1 = checking_bullseye(field_2, shots1, move)
+            field_2, shots1, to_cont = checking_bullseye(field_2, shots1, move)
         else:
             print_field(field_2, shots2)
             move = make_move() # player2
-            field1, shots2 = checking_bullseye(field_1, shots2, move)
-        i += 1
+            field1, shots2, to_cont = checking_bullseye(field_1, shots2, move)
+        i += 1 if not to_cont else 2
         if field_2 == None or field_1 == None:
             break
 
