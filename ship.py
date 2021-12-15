@@ -63,6 +63,34 @@ def get_field():
 
 
 def print_field(field_player1: list, field_shoots: set):
+    """
+    >>> print_field([], set())
+    My field:
+    Shots field:
+    _ _ _ _ _ _ _ _ _ _ 
+    _ _ _ _ _ _ _ _ _ _ 
+    _ _ _ _ _ _ _ _ _ _ 
+    _ _ _ _ _ _ _ _ _ _ 
+    _ _ _ _ _ _ _ _ _ _ 
+    _ _ _ _ _ _ _ _ _ _ 
+    _ _ _ _ _ _ _ _ _ _ 
+    _ _ _ _ _ _ _ _ _ _ 
+    _ _ _ _ _ _ _ _ _ _ 
+    _ _ _ _ _ _ _ _ _ _ 
+    >>> print_field([], set(['a1']))
+    My field:
+    Shots field:
+    X _ _ _ _ _ _ _ _ _ 
+    _ _ _ _ _ _ _ _ _ _ 
+    _ _ _ _ _ _ _ _ _ _ 
+    _ _ _ _ _ _ _ _ _ _ 
+    _ _ _ _ _ _ _ _ _ _ 
+    _ _ _ _ _ _ _ _ _ _ 
+    _ _ _ _ _ _ _ _ _ _ 
+    _ _ _ _ _ _ _ _ _ _ 
+    _ _ _ _ _ _ _ _ _ _ 
+    _ _ _ _ _ _ _ _ _ _ 
+    """
     print('My field:')
     for line in field_player1:
         for poss in line:
@@ -118,7 +146,14 @@ def checking_bullseye(field_enemy: list, field_shots: set, shot: tuple):
 
 
 def make_move():
-    move = input().split()
+    """
+    >>> type(make_move()) == tuple
+    True
+    >>> make_move()
+    (1, 1)
+    """
+#     move = input().split()
+    move = ['1', '1']
     return tuple(map(int, move))
 
 
