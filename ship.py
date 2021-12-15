@@ -2,7 +2,22 @@ def get_field():
     pass
 
 def print_field():
-    pass
+    print('My field:')
+    for line in field_player1:
+        for poss in line:
+            print(poss, end=' ')
+        print()
+
+    lst = [["_"]*10 for i in range(10)]
+    lst[2][1] = 'O'
+    print('Shoots field:')
+    for move in field_shoots: 
+        lst[move[1]][move[0]] = '*'
+    
+    for line in lst:
+        for poss in line:
+            print(poss, end=' ')
+        print()
 
 
 def checking_bullseye(field_enemy: list, field_shots: set, shot: tuple):
