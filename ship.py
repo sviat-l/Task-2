@@ -18,10 +18,10 @@ def checking_bullseye(field_enemy: list, field_shots: set, shot: tuple):
     if mark == "O" or mark == "X":
         field_enemy[vert][horiz] = "_"
         is_ship = False
-        for i in range(3):
-            if field_enemy[vert - 1 + i][horiz] in ("O", "X"):
+        for i in range(5):
+            if field_enemy[vert - 2 + i][horiz] in ("O", "X"):
                 is_ship = True
-            if field_enemy[vert][horiz - 1 + i] in ("O", "X"):
+            if field_enemy[vert][horiz - 2 + i] in ("O", "X"):
                 is_ship = True
         if is_ship:
             print("The ship was damaged")
