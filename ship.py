@@ -4,8 +4,6 @@ def get_field():
 def print_field():
     pass
 
-def analyse_field():
-    pass
 
 def checking_bullseye(field_enemy: list, field_shots: set, shot: tuple):
     horiz = shot[0]
