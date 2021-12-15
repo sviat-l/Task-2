@@ -42,6 +42,11 @@ def make_move():
     move = input().split()
     return tuple(map(int, move))
 
+def checker(coords: tuple):
+    if coords[0] not in range(10) or coords[1] not in range(10):
+        print("You have not entered the allowed coordinates. Try again")
+        return False
+    return True
 
 def step():
     i = 0
