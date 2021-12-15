@@ -1,6 +1,12 @@
 def get_field():
     pass
 
+def checker(coords: tuple):
+    if coords[0] not in range(10) or coords[1] not in range(10):
+        print("You have not entered the allowed coordinates. Try again")
+        return False
+    return True
+
 def print_field(field_player1: list, field_shoots: set):
     print('My field:')
     for line in field_player1:
@@ -18,6 +24,14 @@ def print_field(field_player1: list, field_shoots: set):
             print(poss, end=' ')
         print()
 
+def near_ships(field: list, shot: tuple):
+    horiz = shot[0]
+    vert = shot[1]
+    allow_vert = [field[i][horiz] for i in range(10)]
+    allow_horiz = [field[vert][i] for i in range(10)]
+    return bool(allow_horiz.count("O") + allow_vert.count("O"))
+    
+
 def checking_bullseye(field_enemy: list, field_shots: set, shot: tuple):
     horiz = shot[0]
     vert = shot[1]
@@ -28,14 +42,8 @@ def checking_bullseye(field_enemy: list, field_shots: set, shot: tuple):
         print("You have shot the same square! Not nice")
     if mark == "O" or mark == "X":
         field_enemy[vert][horiz] = "_"
-        is_ship = False
-        for i in range(5):
-            if field_enemy[vert - 2 + i][horiz] in ("O", "X"):
-                is_ship = True
-            if field_enemy[vert][horiz - 2 + i] in ("O", "X"):
-                is_ship = True
-        if is_ship:
-            print("The ship was damaged")
+        if near_ships(field_enemy, shot):
+            print("There are other ships on these lines")
         else:
             print("The ship was completly detroyed")
         quantity = 0
@@ -45,7 +53,7 @@ def checking_bullseye(field_enemy: list, field_shots: set, shot: tuple):
                     quantity += 1
         if quantity == 0:
             print("WIN!")
-            return None
+            return None, None
     else:
         print("You didn't hit the target. Better luck next time")
     return field_enemy, field_shots
@@ -55,11 +63,6 @@ def make_move():
     move = input().split()
     return tuple(map(int, move))
 
-def checker(coords: tuple):
-    if coords[0] not in range(10) or coords[1] not in range(10):
-        print("You have not entered the allowed coordinates. Try again")
-        return False
-    return True
 
 def step():
     i = 0
