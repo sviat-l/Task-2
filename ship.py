@@ -38,6 +38,8 @@ def checking_bullseye(field_enemy: list, field_shots: set, shot: tuple):
     else:
         print("You didn't hit the target. Better luck next time")
     return field_enemy, field_shots
+
+
 def make_move():
     move = input().split()
     return tuple(map(int, move))
